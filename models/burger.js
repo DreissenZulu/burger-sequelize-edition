@@ -23,7 +23,8 @@ const Burger = sequelize.define("burger", {
     burgerName: {
         type: DataTypes.STRING,
         validate: {
-            len: [1, 30]
+            notNull: true,
+            is: /^[a-z0-9\s]+$/i
         },
         field: 'burger_name'
     },
