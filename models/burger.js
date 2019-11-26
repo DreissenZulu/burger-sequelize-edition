@@ -1,5 +1,5 @@
-// Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
+const Sequelize = require("sequelize");
+const sequelize = require("../config/connection.js");
 
 var burger = {
     selectAll: function (cb) {
@@ -19,4 +19,17 @@ var burger = {
     }
 };
 
-module.exports = burger;
+const Burger = sequelize.define("burger", {
+    burgerName: {
+        type: DataTypes.STRING,
+        validate: {
+            len: [1, 30]
+        },
+        field: 'burger_name'
+    },
+    devoured: DataTypes.BOOLEAN
+})
+
+Burger.sync();
+
+module.exports = Burger;
