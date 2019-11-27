@@ -1,6 +1,7 @@
 <main class="container">
     <div class="d-flex justify-content-center">
-        <a href="https://www.vecteezy.com/" target="_blank"><img src="burg.png" alt="Vectors by Vecteezy" style="max-height: 300px;"></a>
+        <a href="https://www.vecteezy.com/" target="_blank"><img src="burg.png" alt="Vectors by Vecteezy"
+                style="max-height: 300px;"></a>
     </div>
 
     <h1>Eat-Da-Burger!</h1>
@@ -12,8 +13,11 @@
                 {{#each burger}}
                 {{#unless dataValues.devoured}}
                 <li>
-                    <button class="eatBtn btn btn-danger" id="{{dataValues.id}}">Devour It!</button>
-                    {{dataValues.burgerName}}
+                    <form class="customer-form">
+                        <label for="custName">{{dataValues.burgerName}}</label>
+                        <input type="text" name="custName" placeholder="Customer Name" text="">
+                        <button class="eatBtn btn btn-danger" id="{{dataValues.id}}">Devour It!</button>
+                    </form>
                 </li>
                 {{/unless}}
                 {{/each}}
@@ -26,7 +30,7 @@
                 {{#each burger}}
                 {{#if dataValues.devoured}}
                 <li>
-                    {{dataValues.burgerName}}
+                    {{dataValues.burgerName}} devoured by {{dataValues.customerName}}
                 </li>
                 {{/if}}
                 {{/each}}
