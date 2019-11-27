@@ -39,7 +39,8 @@
             box-shadow: 0 0 10px grey;
         }
 
-        .form-control, .form-control:focus {
+        .form-control,
+        .form-control:focus {
             background-color: chocolate;
             color: white;
             border: darkgoldenrod;
@@ -52,7 +53,6 @@
         .btn-danger {
             padding: .1rem .75rem;
         }
-
     </style>
 </head>
 
@@ -65,7 +65,7 @@
                 event.preventDefault();
 
                 var newBurg = {
-                    name: $("#burg").val().trim(),
+                    name: $("#burg").val().trim()
                 };
 
                 $.ajax("/api/burgers", {
@@ -78,19 +78,18 @@
                 }
                 );
             })
-            $(".eatBtn").on("click", function (event) {
-                console.log(this.id);
-                let devouredState = {
-                    devoured: "true"
-                };
+            $(".eatBtn").on("click", event => {
+                let newCust = $(event.target).prev().val().trim();
 
-                $.ajax(`/api/burgers/${this.id}`, {
+                $.ajax(`/api/burgers/${event.target.id}`, {
                     type: "PUT",
-                    data: devouredState
-                }).then(() => {
-                    console.log("Enjoy!");
-                    location.reload();
-                })
+                    data: {
+                        devoured: "true",
+                        custName: newCust
+                    }
+                });
+                console.log("Enjoy!");
+                location.reload();
             })
         });
     </script>
