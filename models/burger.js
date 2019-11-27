@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 notNull: true,
-                is: /^[a-z\s]+$/i
+                is: /^[a-z][a-z\s]+$/i
             },
             defaultValue: "Anonymous",
             field: 'customer_name'
