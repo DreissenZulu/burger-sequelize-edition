@@ -15,13 +15,14 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burgers", (req, res) => {
+    console.log(req.body.name);
     db.burgers.create({burgerName: req.body.name}).then( result => {
         res.json({ id: result.insertId });
     })
 });
 
 router.put("/api/burgers/:id", (req, res) => {
-    db.burgers.update({devoured: true}, {where: {id: req.params.id} })
+    db.burgers.update({devoured: true, customerName: req.body.custName}, {where: {id: req.params.id} })
     .then(result => {
         if (result.changedRows === 0) {
             // If no rows were changed, then the ID must not exist, so 404
