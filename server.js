@@ -8,6 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+var db = require("./models");
+
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
@@ -19,6 +21,8 @@ var routes = require("./controllers/burgers_controller.js");
 
 app.use(routes);
 
-app.listen(PORT, function() {
-  console.log("App now listening at localhost:" + PORT);
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
