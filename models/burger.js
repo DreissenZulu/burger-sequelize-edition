@@ -12,6 +12,13 @@ module.exports = function(sequelize, DataTypes) {
         devoured: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        customerName: {
+            type: DataTypes.STRING,
+            validate: {
+                is: /^[a-z\s]+$/i
+            },
+            field: 'customer_name'
         }
     })
     return Burger;
