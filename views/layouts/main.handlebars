@@ -79,6 +79,7 @@
                 );
             })
             $(".eatBtn").on("click", event => {
+                event.preventDefault();
                 let newCust = $(event.target).prev().val().trim();
 
                 $.ajax(`/api/burgers/${event.target.id}`, {
@@ -87,9 +88,10 @@
                         devoured: "true",
                         custName: newCust
                     }
-                });
-                console.log("Enjoy!");
-                location.reload();
+                }).then(() => {
+                    console.log("Enjoy!");
+                    location.reload();
+                })
             })
         });
     </script>
