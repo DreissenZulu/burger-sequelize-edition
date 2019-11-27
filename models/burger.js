@@ -15,9 +15,12 @@ module.exports = function(sequelize, DataTypes) {
         },
         customerName: {
             type: DataTypes.STRING,
+            allowNull: false,
             validate: {
+                notNull: true,
                 is: /^[a-z\s]+$/i
             },
+            defaultValue: "Anonymous",
             field: 'customer_name'
         }
     })
