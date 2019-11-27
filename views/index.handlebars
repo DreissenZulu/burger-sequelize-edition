@@ -10,10 +10,10 @@
 
             <ul>
                 {{#each burger}}
-                {{#unless devoured}}
+                {{#unless dataValues.devoured}}
                 <li>
-                    <button class="eatBtn btn btn-danger" id="{{id}}">Devour It!</button>
-                    {{burger_name}}
+                    <button class="eatBtn btn btn-danger" id="{{dataValues.id}}">Devour It!</button>
+                    {{dataValues.burgerName}}
                 </li>
                 {{/unless}}
                 {{/each}}
@@ -24,9 +24,9 @@
 
             <ul>
                 {{#each burger}}
-                {{#if devoured}}
+                {{#if dataValues.devoured}}
                 <li>
-                    {{burger_name}}
+                    {{dataValues.burgerName}}
                 </li>
                 {{/if}}
                 {{/each}}
